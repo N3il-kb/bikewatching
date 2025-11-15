@@ -1,0 +1,106 @@
+html,
+body {
+  margin: 0;
+  padding: 5;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+header {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 1em;
+}
+
+.time-filter-label {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  align-items: flex-end;
+  font-size: 0.95rem;
+  color: #1f2933;
+}
+
+#time-slider {
+  width: 18rem;
+}
+
+#selected-time,
+#any-time {
+  display: block;
+  min-height: 1.25em;
+}
+
+#any-time {
+  color: #6b7280;
+  font-style: italic;
+}
+
+#map {
+  width: 100%; /* Adjust width to your desired size */
+  height: 100%; /* Adjust height to your desired size */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
+  border-radius: 8px; /* Optional: rounded corners */
+}
+
+#station-overlay circle,
+.legend > div {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio, 0.5)),
+    var(--color-arrivals)
+  );
+}
+
+#station-overlay {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+  }
+
+/* ⭐ Station marker styling (Step 4.3) */
+#station-overlay circle {
+    fill: var(--color);
+    fill-opacity: 0.6;     /* 60% transparency */
+    stroke: white;
+    stroke-width: 1.5px;
+    pointer-events: auto;   /* enable later tooltip interaction */
+  }
+
+.legend {
+  display: flex;
+  gap: 1px;
+  width: 100%;
+  margin-block: 1rem;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.legend > div {
+  flex: 1;
+  padding: 0.5rem 1.5rem;
+  background: var(--color);
+  color: #111;
+  font-weight: 600;
+}
+
+.legend > div:nth-child(1) {
+  text-align: left;
+}
+
+.legend > div:nth-child(2) {
+  text-align: center;
+}
+
+.legend > div:nth-child(3) {
+  text-align: right;
+}
